@@ -28,5 +28,3 @@ export const useIssue = (issue_number: number) => {
     error,
   };
 };
-
-export default useIssue;
