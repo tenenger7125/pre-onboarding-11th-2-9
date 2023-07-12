@@ -10,7 +10,6 @@ type IssueItemProps = {
 };
 
 const IssueItem = ({ issue: { number, title, created_at, user, comments } }: IssueItemProps) => {
-  console.log(user);
   return (
     <SIssueItem>
       <SLink to={`${PATH.ISSUES}/${number}`}>
@@ -19,10 +18,10 @@ const IssueItem = ({ issue: { number, title, created_at, user, comments } }: Iss
           <Title order={4} display="inline" p="0 10px">
             {title}
           </Title>
-          <div>
+          <SCreateInfo>
             <span>작성자: {user.login}</span>
-            <span>작성일: {created_at}</span>
-          </div>
+            <span>작성일: {new Date(created_at).toLocaleString('ko-KR')}</span>
+          </SCreateInfo>
         </SInfoContainer>
         <SComment>코멘트: {comments}</SComment>
       </SLink>
@@ -33,6 +32,8 @@ const IssueItem = ({ issue: { number, title, created_at, user, comments } }: Iss
 const SIssueItem = styled.li`
   list-style: none;
   padding: 10px 0;
+  border-bottom: 1px solid ${props => props.theme.colors.gray[3]};
+
   &:hover {
     background-color: ${props => props.theme.colors.gray[2]};
   }
@@ -46,6 +47,11 @@ const SLink = styled(Link)`
 
 const SInfoContainer = styled.div`
   line-height: 1.5;
+`;
+
+const SCreateInfo = styled.div`
+  display: flex;
+  gap: 10px;
 `;
 
 const SComment = styled.div`
