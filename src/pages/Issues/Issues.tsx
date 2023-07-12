@@ -3,10 +3,12 @@ import { styled } from 'styled-components';
 
 import IssueItem from './IssueItem';
 import AdImage from './AdImage';
-import { useIssues } from '@/hooks';
+
+import { useIssues, useScrollObserver } from '@/hooks';
 
 const Issues = () => {
-  const { issues } = useIssues();
+  const { issues, isLoading, nextPage } = useIssues();
+  const ref = useScrollObserver(nextPage);
 
   return (
     <SLayout>
@@ -21,6 +23,7 @@ const Issues = () => {
           <IssueItem issue={issue} />
         </Fragment>
       ))}
+      {!isLoading && <SScrollObserver ref={ref} src="images/ballTriangle.svg" alt="ballTriangle" />}
     </SLayout>
   );
 };
@@ -31,6 +34,12 @@ const SLayout = styled.ul`
   gap: 20px;
   max-width: 800px;
   padding: 0;
+  margin: 0 auto;
+`;
+
+const SScrollObserver = styled.img`
+  width: 100px;
+  text-align: center;
   margin: 0 auto;
 `;
 
