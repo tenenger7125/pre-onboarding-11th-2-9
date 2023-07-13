@@ -13,22 +13,6 @@ const ISSUE_ACTION_TYPE = {
   END: 'end',
 } as const;
 
-type IssueContextProps = {
-  children: React.ReactNode;
-};
-
-type IssueStateContextType = {
-  issue: Partial<MarkupIssue>;
-  isLoading: boolean;
-  error: string;
-};
-
-type ActionType = {
-  type: (typeof ISSUE_ACTION_TYPE)[keyof typeof ISSUE_ACTION_TYPE];
-  issue: Partial<MarkupIssue>;
-  error: string;
-};
-
 const initialState: IssueStateContextType = {
   issue: {},
   isLoading: false,
@@ -78,4 +62,20 @@ export const IssueContextProvider = ({ children }: IssueContextProps) => {
   }, []);
 
   return <IssueStateContext.Provider value={state}>{children}</IssueStateContext.Provider>;
+};
+
+type IssueContextProps = {
+  children: React.ReactNode;
+};
+
+type IssueStateContextType = {
+  issue: Partial<MarkupIssue>;
+  isLoading: boolean;
+  error: string;
+};
+
+type ActionType = {
+  type: (typeof ISSUE_ACTION_TYPE)[keyof typeof ISSUE_ACTION_TYPE];
+  issue: Partial<MarkupIssue>;
+  error: string;
 };

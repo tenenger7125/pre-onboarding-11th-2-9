@@ -13,25 +13,6 @@ const ISSUES_ACTION_TYPE = {
   END: 'end',
 } as const;
 
-type IssuesContextProps = {
-  children: React.ReactNode;
-};
-
-type IssuesStateContextType = {
-  issues: Issue[];
-  page: number;
-  isLoading: boolean;
-  error: string;
-  nextPage: () => void;
-};
-
-type ActionType = {
-  type: (typeof ISSUES_ACTION_TYPE)[keyof typeof ISSUES_ACTION_TYPE];
-  issues: Issue[];
-  page: number;
-  error: string;
-};
-
 const initialState: IssuesStateContextType = {
   issues: [],
   page: 1,
@@ -86,4 +67,23 @@ export const IssuesContextProvider = ({ children }: IssuesContextProps) => {
   }, [state.page]);
 
   return <IssuesStateContext.Provider value={{ ...state, nextPage }}>{children}</IssuesStateContext.Provider>;
+};
+
+type IssuesContextProps = {
+  children: React.ReactNode;
+};
+
+type IssuesStateContextType = {
+  issues: Issue[];
+  page: number;
+  isLoading: boolean;
+  error: string;
+  nextPage: () => void;
+};
+
+type ActionType = {
+  type: (typeof ISSUES_ACTION_TYPE)[keyof typeof ISSUES_ACTION_TYPE];
+  issues: Issue[];
+  page: number;
+  error: string;
 };
