@@ -14,7 +14,7 @@ export const githubServices = {
     const { data } = await instance.get<Issue[]>(`/repos/${org}/${repo}/issues?state=open&sort=comments&page=${page}`);
     return data;
   },
-  async getIssue(org: string, repo: string, issueNumber: string) {
+  async getIssue(org: string, repo: string, issueNumber: number) {
     const { data } = await instance.get<Issue>(`/repos/${org}/${repo}/issues/${issueNumber}`);
     return data;
   },

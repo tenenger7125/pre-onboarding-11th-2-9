@@ -55,7 +55,7 @@ const issueReducer = (state: IssueStateContextType, action: ActionType) => {
 export const useIssue = () => useContext(IssueStateContext);
 
 export const IssueContextProvider = ({ children }: IssueContextProps) => {
-  const { org = '', repo = '', issueNumber = '' } = useParams();
+  const { org = '', repo = '', issueNumber = -1 } = useParams();
   const [state, dispatch] = useReducer(issueReducer, initialState);
 
   useEffect(() => {
@@ -63,7 +63,7 @@ export const IssueContextProvider = ({ children }: IssueContextProps) => {
       dispatch({ ...state, type: ISSUE_ACTION_TYPE.LOADING });
 
       try {
-        const issue = await githubServices.getIssue(org, repo, issueNumber);
+        const issue = await githubServices.getIssue(org, repo, +issueNumber);
         const markup = await markdown.parse(issue.body);
 
         dispatch({ ...state, type: ISSUE_ACTION_TYPE.SUCCESS, issue: { ...issue, markup } });
