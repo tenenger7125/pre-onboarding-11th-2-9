@@ -1,4 +1,5 @@
 import { Root, Home, Issues, IssueDetail, Error } from '@/pages';
+import { IssueContextProvider } from '@/context/issue';
 import { PATH } from '@/constants';
 
 export const routes = [
@@ -15,7 +16,11 @@ export const routes = [
         path: PATH.ISSUES,
       },
       {
-        element: <IssueDetail />,
+        element: (
+          <IssueContextProvider>
+            <IssueDetail />
+          </IssueContextProvider>
+        ),
         path: `${PATH.ISSUES}/:issueNumber`,
       },
       {

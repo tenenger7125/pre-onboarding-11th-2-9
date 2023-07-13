@@ -1,13 +1,11 @@
-import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import { Error } from '@/pages';
 import { Title, Loading } from '@/components';
-import { useIssue } from '@/hooks';
+import { useIssue } from '@/context/issue';
 
 const IssueDetail = () => {
-  const { org = '', repo = '', issueNumber = '' } = useParams();
-  const { issue, isLoading, error } = useIssue(org, repo, issueNumber);
+  const { issue, isLoading, error } = useIssue();
 
   if (error) return <Error />;
 
