@@ -1,5 +1,4 @@
 import { Fragment } from 'react';
-import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import IssueItem from './IssueItem';
@@ -7,11 +6,11 @@ import AdImage from './AdImage';
 
 import { Error } from '@/pages';
 import { Loading } from '@/components';
-import { useIssues, useScrollObserver } from '@/hooks';
+import { useIssues } from '@/context/issues';
+import { useScrollObserver } from '@/hooks';
 
 const Issues = () => {
-  const { org = '', repo = '' } = useParams();
-  const { issues, isLoading, nextPage, error } = useIssues(org, repo);
+  const { issues, isLoading, nextPage, error } = useIssues();
   const ref = useScrollObserver(nextPage);
 
   if (error) return <Error />;
@@ -24,7 +23,7 @@ const Issues = () => {
           <IssueItem issue={issue} />
         </Fragment>
       ))}
-      {isLoading ? <Loading /> : <SScrollObserver ref={ref} src="images/ballTriangle.svg" alt="ballTriangle" />}
+      {isLoading ? <Loading /> : <SScrollObserver ref={ref} src="/images/ballTriangle.svg" alt="ballTriangle" />}
     </SLayout>
   );
 };

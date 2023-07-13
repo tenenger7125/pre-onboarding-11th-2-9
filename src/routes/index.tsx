@@ -1,4 +1,5 @@
 import { Root, Home, Issues, IssueDetail, Error } from '@/pages';
+import { IssuesContextProvider } from '@/context/issues';
 import { IssueContextProvider } from '@/context/issue';
 import { PATH } from '@/constants';
 
@@ -12,7 +13,11 @@ export const routes = [
         path: PATH.HOME,
       },
       {
-        element: <Issues />,
+        element: (
+          <IssuesContextProvider>
+            <Issues />
+          </IssuesContextProvider>
+        ),
         path: PATH.ISSUES,
       },
       {
