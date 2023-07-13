@@ -1,4 +1,4 @@
-import { Root, Home, Issues, IssueDetail } from '@/pages';
+import { Root, Home, Issues, IssueDetail, Error } from '@/pages';
 import { PATH } from '@/constants';
 
 export const routes = [
@@ -17,6 +17,10 @@ export const routes = [
       {
         element: <IssueDetail />,
         path: `${PATH.ISSUES}/:id`,
+      },
+      {
+        element: <Error />,
+        path: PATH.ERROR,
       },
     ],
   },

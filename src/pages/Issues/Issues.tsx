@@ -6,10 +6,15 @@ import AdImage from './AdImage';
 
 import { Loading } from '@/components';
 import { useIssues, useScrollObserver } from '@/hooks';
+import { useNavigate } from 'react-router-dom';
+import { PATH } from '@/constants';
 
 const Issues = () => {
-  const { issues, isLoading, nextPage } = useIssues();
+  const navigate = useNavigate();
+  const { issues, isLoading, nextPage, error } = useIssues();
   const ref = useScrollObserver(nextPage);
+
+  if (error) navigate(PATH.ERROR);
 
   return (
     <SLayout>

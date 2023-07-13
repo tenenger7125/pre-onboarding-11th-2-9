@@ -1,14 +1,18 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useIssue } from '@/hooks';
 import { styled } from 'styled-components';
 import { Title, Loading } from '@/components';
+import { PATH } from '../constants';
 
 const getIssueNumber = (pathname: string) => +(pathname.split('/').at(-1) ?? -1);
 
 const IssueDetail = () => {
+  const navigate = useNavigate();
   const { pathname } = useLocation();
   const issue_number = getIssueNumber(pathname);
-  const { issue, isLoading } = useIssue(issue_number);
+  const { issue, isLoading, error } = useIssue(issue_number);
+
+  if (error) navigate(PATH.ERROR);
 
   return (
     <SLayout>
