@@ -112,3 +112,5 @@ export type Issue = {
   performed_via_github_app: null;
   state_reason: null;
 };
+
+export type markupIssue = Issue & { markup: { __html: string } };
