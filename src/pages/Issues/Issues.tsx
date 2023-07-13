@@ -4,18 +4,17 @@ import { styled } from 'styled-components';
 import IssueItem from './IssueItem';
 import AdImage from './AdImage';
 
+import { Error } from '@/pages';
 import { Loading } from '@/components';
 import { useIssues, useScrollObserver } from '@/hooks';
-import { useNavigate, useParams } from 'react-router-dom';
-import { PATH } from '@/constants';
+import { useParams } from 'react-router-dom';
 
 const Issues = () => {
-  const navigate = useNavigate();
   const { org = '', repo = '' } = useParams();
   const { issues, isLoading, nextPage, error } = useIssues(org, repo);
   const ref = useScrollObserver(nextPage);
 
-  if (error) navigate(PATH.ERROR);
+  if (error) return <Error />;
 
   return (
     <SLayout>

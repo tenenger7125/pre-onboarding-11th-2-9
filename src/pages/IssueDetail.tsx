@@ -1,15 +1,15 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { useIssue } from '@/hooks';
+import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
+
+import { Error } from '@/pages';
 import { Title, Loading } from '@/components';
-import { PATH } from '../constants';
+import { useIssue } from '@/hooks';
 
 const IssueDetail = () => {
-  const navigate = useNavigate();
   const { org = '', repo = '', id = '' } = useParams();
   const { issue, isLoading, error } = useIssue(org, repo, id);
 
-  if (error) navigate(PATH.ERROR);
+  if (error) return <Error />;
 
   return (
     <SLayout>
