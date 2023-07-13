@@ -1,14 +1,12 @@
 import { styled } from 'styled-components';
 
-type AdImageProps = {
-  imgURL: string;
-  linkTo: string;
-};
-
-const AdImage = ({ imgURL, linkTo }: AdImageProps) => {
+const AdImage = () => {
   return (
-    <SLayout href={linkTo} target="__blank">
-      <img src={imgURL} alt="ad image" />
+    <SLayout href="https://www.wanted.co.kr/" target="__blank">
+      <img
+        src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=130&q=100"
+        alt="ad image"
+      />
     </SLayout>
   );
 };
