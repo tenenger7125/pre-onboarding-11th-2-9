@@ -5,7 +5,7 @@ import { githubServices } from '@/services';
 import { Issue, markupIssue } from '@/types';
 import { markdown } from '@/utils/markdown';
 
-export const useIssue = (org: string, repo: string, issue_number: number) => {
+export const useIssue = (org: string, repo: string, issueNumber: number) => {
   const [issue, setIssue] = useState<Partial<markupIssue>>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
@@ -15,7 +15,7 @@ export const useIssue = (org: string, repo: string, issue_number: number) => {
       setIsLoading(true);
 
       try {
-        const issue = await githubServices.getIssue(org, repo, issue_number);
+        const issue = await githubServices.getIssue(org, repo, issueNumber);
         const markup = await markdown.parse(issue.body);
 
         setIssue({ ...issue, markup });

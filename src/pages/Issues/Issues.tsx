@@ -8,16 +8,12 @@ import { Loading } from '@/components';
 import { useIssues, useScrollObserver } from '@/hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { PATH } from '@/constants';
-
-const getOrgAndRepo = (pathname: string) => {
-  const [org, repo] = pathname.split('/').filter((_, i) => i === 1 || i === 2);
-  return { org, repo };
-};
+import { pathnames } from '@/utils/pathnames';
 
 const Issues = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { org, repo } = getOrgAndRepo(pathname);
+  const { org, repo } = pathnames.getOrgAndRepo(pathname);
   const { issues, isLoading, nextPage, error } = useIssues(org, repo);
   const ref = useScrollObserver(nextPage);
 

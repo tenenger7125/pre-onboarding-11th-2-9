@@ -1,19 +1,15 @@
 import { styled } from 'styled-components';
 import { Title } from '@/components';
 import { useLocation } from 'react-router-dom';
-
-const getTitle = (pathname: string) => {
-  const [org, repo] = pathname.split('/').filter((_, i) => i === 1 || i === 2);
-
-  return org && repo ? `${org} / ${repo}` : 'Git Hub';
-};
+import { pathnames } from '@/utils/pathnames';
 
 const Header = () => {
   const { pathname } = useLocation();
+  const { org, repo } = pathnames.getOrgAndRepo(pathname);
 
   return (
     <SHeader>
-      <Title order={2}>{getTitle(pathname)}</Title>
+      <Title order={2}>{org && repo ? `${org} / ${repo}` : 'Git Hub'}</Title>
     </SHeader>
   );
 };

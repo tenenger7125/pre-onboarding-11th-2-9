@@ -36,10 +36,10 @@ export const githubServices = {
     const { data } = await instance.get<Issue[]>(`/repos/${org}/${repo}/issues?state=open&sort=comments&page=${page}`);
     return data;
   },
-  async getIssue(org: string, repo: string, issue_number: number) {
+  async getIssue(org: string, repo: string, issueNumber: number) {
     // 이슈 목록 가져오기 API 활용
     // open 상태의 이슈 중 코멘트가 많은 순으로 정렬
-    const { data } = await instance.get<Issue>(`/repos/${org}/${repo}/issues/${issue_number}?state=open&sort=comments`);
+    const { data } = await instance.get<Issue>(`/repos/${org}/${repo}/issues/${issueNumber}?state=open&sort=comments`);
     return data;
   },
 };
