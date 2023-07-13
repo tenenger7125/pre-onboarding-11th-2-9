@@ -1,34 +1,28 @@
-import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { Title } from '@/components';
+import { useLocation } from 'react-router-dom';
 
-import { PATH } from '@/constants/path';
+const getTitle = (pathname: string) => {
+  const [org, repo] = pathname.split('/').filter((_, i) => i === 1 || i === 2);
+
+  return org && repo ? `${org} / ${repo}` : 'Git Hub';
+};
 
 const Header = () => {
+  const { pathname } = useLocation();
+
   return (
     <SHeader>
-      <Link to={PATH.HOME}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="100">
-          <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" fontSize="24" fontFamily="Arial">
-            dongyu
-          </text>
-        </svg>
-      </Link>
-      <a href="https://github.com/tenenger7125">
-        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="100">
-          <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" fontSize="24" fontFamily="Arial">
-            깃허브로 가기
-          </text>
-        </svg>
-      </a>
+      <Title order={2}>{getTitle(pathname)}</Title>
     </SHeader>
   );
 };
 
 const SHeader = styled.header`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 20px;
 `;
 
 export default Header;
