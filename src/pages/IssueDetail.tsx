@@ -1,16 +1,13 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useIssue } from '@/hooks';
 import { styled } from 'styled-components';
 import { Title, Loading } from '@/components';
 import { PATH } from '../constants';
-import { pathnames } from '@/utils/pathnames';
 
 const IssueDetail = () => {
   const navigate = useNavigate();
-  const { pathname } = useLocation();
-  const { org, repo } = pathnames.getOrgAndRepo(pathname);
-  const issueNumber = pathnames.getIssueNumber(pathname);
-  const { issue, isLoading, error } = useIssue(org, repo, issueNumber);
+  const { org = '', repo = '', id = '' } = useParams();
+  const { issue, isLoading, error } = useIssue(org, repo, id);
 
   if (error) navigate(PATH.ERROR);
 

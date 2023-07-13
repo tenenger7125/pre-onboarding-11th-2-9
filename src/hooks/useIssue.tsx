@@ -5,7 +5,7 @@ import { githubServices } from '@/services';
 import { Issue, markupIssue } from '@/types';
 import { markdown } from '@/utils/markdown';
 
-export const useIssue = (org: string, repo: string, issueNumber: number) => {
+export const useIssue = (org: string, repo: string, issueNumber: string) => {
   const [issue, setIssue] = useState<Partial<markupIssue>>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
