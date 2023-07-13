@@ -23,8 +23,8 @@ const IssueDetail = () => {
             {issue?.title}
           </Title>
           <SCreateInfo>
-            <SAvatar src={issue?.user?.avatar_url} alt={issue?.user?.login} />
-            <span>작성자: {issue?.user?.login}</span>
+            <SAvatar src={issue.user?.avatar_url} alt={issue.user?.login} />
+            <span>작성자: {issue.user?.login}</span>
             <span>작성일: {new Date(issue?.created_at || '').toLocaleString('ko-KR')}</span>
           </SCreateInfo>
         </SInfoContainer>
