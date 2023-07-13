@@ -4,7 +4,7 @@ import { isAxiosError } from 'axios';
 
 import { githubServices } from '@/services';
 import { markdown } from '@/utils/markdown';
-import type { Issue, markupIssue } from '@/types';
+import type { Issue, MarkupIssue } from '@/types';
 
 const ISSUE_ACTION_TYPE = {
   LOADING: 'loading',
@@ -18,14 +18,14 @@ type IssueContextProps = {
 };
 
 type IssueStateContextType = {
-  issue: Partial<markupIssue>;
+  issue: Partial<MarkupIssue>;
   isLoading: boolean;
   error: string;
 };
 
 type ActionType = {
   type: (typeof ISSUE_ACTION_TYPE)[keyof typeof ISSUE_ACTION_TYPE];
-  issue: Partial<markupIssue>;
+  issue: Partial<MarkupIssue>;
   error: string;
 };
 

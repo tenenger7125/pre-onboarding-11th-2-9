@@ -113,4 +113,4 @@ export type Issue = {
   state_reason: null;
 };
 
-export type markupIssue = Issue & { markup: { __html: string } };
+export type MarkupIssue = Issue & { markup: { __html: string } };
