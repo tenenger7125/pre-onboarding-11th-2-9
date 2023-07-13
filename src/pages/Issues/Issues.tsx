@@ -4,6 +4,7 @@ import { styled } from 'styled-components';
 import IssueItem from './IssueItem';
 import AdImage from './AdImage';
 
+import { Loading } from '@/components';
 import { useIssues, useScrollObserver } from '@/hooks';
 
 const Issues = () => {
@@ -23,6 +24,7 @@ const Issues = () => {
           <IssueItem issue={issue} />
         </Fragment>
       ))}
+      {isLoading && <Loading />}
       {!isLoading && <SScrollObserver ref={ref} src="images/ballTriangle.svg" alt="ballTriangle" />}
     </SLayout>
   );
