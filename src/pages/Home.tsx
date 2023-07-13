@@ -4,8 +4,8 @@ import { styled } from 'styled-components';
 const Home = () => {
   return (
     <SLayout>
-      <Link to={`/angular/angular-cli/issues`}>angular</Link>
-      <Link to={`/facebook/react/issues`}>react</Link>
+      <Link to="/angular/angular-cli/issues">angular</Link>
+      <Link to="/facebook/react/issues">react</Link>
     </SLayout>
   );
 };

@@ -6,10 +6,7 @@ export const useScrollObserver = (callback: () => void) => {
   const observer = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          console.log('scrollobserver!');
-          callback();
-        }
+        if (entry.isIntersecting) callback();
       });
     },
     { threshold: 0.7 },

@@ -6,8 +6,8 @@ import { Title, Loading } from '@/components';
 import { useIssue } from '@/hooks';
 
 const IssueDetail = () => {
-  const { org = '', repo = '', id = '' } = useParams();
-  const { issue, isLoading, error } = useIssue(org, repo, id);
+  const { org = '', repo = '', issueNumber = '' } = useParams();
+  const { issue, isLoading, error } = useIssue(org, repo, issueNumber);
 
   if (error) return <Error />;
 

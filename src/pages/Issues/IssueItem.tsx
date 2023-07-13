@@ -1,16 +1,12 @@
 import { styled } from 'styled-components';
-
-import { Issue } from '@/types';
 import { Link } from 'react-router-dom';
-import { Title } from '@/components';
 
-type IssueItemProps = {
-  issue: Issue;
-};
+import { Title } from '@/components';
+import type { Issue } from '@/types';
 
 const IssueItem = ({ issue: { number, title, created_at, user, comments } }: IssueItemProps) => {
   return (
-    <SIssueItem>
+    <SLayout>
       <SLink to={`./${number}`}>
         <SInfoContainer>
           <span>#{number}</span>
@@ -24,11 +20,11 @@ const IssueItem = ({ issue: { number, title, created_at, user, comments } }: Iss
         </SInfoContainer>
         <SComment>코멘트: {comments}</SComment>
       </SLink>
-    </SIssueItem>
+    </SLayout>
   );
 };
 
-const SIssueItem = styled.li`
+const SLayout = styled.li`
   list-style: none;
   padding: 10px 0;
   border-bottom: 1px solid ${props => props.theme.colors.gray[3]};
@@ -56,5 +52,9 @@ const SCreateInfo = styled.div`
 const SComment = styled.div`
   flex-shrink: 0;
 `;
+
+type IssueItemProps = {
+  issue: Issue;
+};
 
 export default IssueItem;

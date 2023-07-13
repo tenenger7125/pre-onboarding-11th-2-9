@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { isAxiosError } from 'axios';
 
 import { githubServices } from '@/services';
-import { Issue, markupIssue } from '@/types';
-import { markdown } from '@/utils/markdown';
+import { markdown } from '@/utils';
+import type { Issue, markupIssue } from '@/types';
 
 export const useIssue = (org: string, repo: string, issueNumber: string) => {
   const [issue, setIssue] = useState<Partial<markupIssue>>({});

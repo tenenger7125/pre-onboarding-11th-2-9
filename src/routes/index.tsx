@@ -16,7 +16,7 @@ export const routes = [
       },
       {
         element: <IssueDetail />,
-        path: `${PATH.ISSUES}/:id`,
+        path: `${PATH.ISSUES}/:issueNumber`,
       },
       {
         element: <Error />,

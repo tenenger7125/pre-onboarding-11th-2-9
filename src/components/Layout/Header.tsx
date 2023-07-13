@@ -1,13 +1,14 @@
-import { styled } from 'styled-components';
-import { Title } from '@/components';
 import { useParams } from 'react-router-dom';
+import { styled } from 'styled-components';
+
+import { Title } from '@/components';
 
 const Header = () => {
-  const params = useParams();
+  const { org, repo } = useParams();
 
   return (
     <SHeader>
-      <Title order={2}>{params.org && params.repo ? `${params.org} / ${params.repo}` : 'Git Hub'}</Title>
+      <Title order={2}>{org && repo ? `${org} / ${repo}` : 'Git Hub'}</Title>
     </SHeader>
   );
 };

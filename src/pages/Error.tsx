@@ -1,6 +1,7 @@
-import { styled } from 'styled-components';
-import { Title } from '@/components';
 import { useNavigate } from 'react-router-dom';
+import { styled } from 'styled-components';
+
+import { Title } from '@/components';
 
 const Error = () => {
   const navigate = useNavigate();
@@ -38,10 +39,9 @@ const SBackButton = styled.button`
 
   font-size: 1rem;
   font-weight: bold;
-  color: ${props => props.theme.colors.white[0]};
 
-  background-color: ${props => props.theme.colors.blue[6]};
-  border: none;
+  background-color: ${props => props.theme.colors.white[0]};
+  border: 1px solid ${props => props.theme.colors.gray[4]};
   border-radius: 5px;
 
   cursor: pointer;

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { githubServices } from '@/services';
-import { Issue } from '@/types';
 import { isAxiosError } from 'axios';
+
+import { githubServices } from '@/services';
+import type { Issue } from '@/types';
 
 export const useIssues = (org: string, repo: string) => {
   const [issues, setIssues] = useState<Issue[]>([]);

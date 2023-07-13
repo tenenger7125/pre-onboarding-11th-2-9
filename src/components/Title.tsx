@@ -10,6 +10,12 @@ const Title = ({ order, line, fz, display, p, children }: TitleProps) => {
   );
 };
 
+Title.defaultProps = {
+  order: 2,
+  display: 'block',
+  p: '0 0',
+};
+
 const STitle = styled.div<Partial<TitleProps>>`
   display: ${props => props.$display};
   padding: ${props => props.$p};
@@ -27,12 +33,6 @@ const STitle = styled.div<Partial<TitleProps>>`
     text-overflow: ellipsis;
     `}
 `;
-
-Title.defaultProps = {
-  order: 2,
-  display: 'block',
-  p: '0 0',
-};
 
 type TitleProps = {
   order: 1 | 2 | 3 | 4 | 5 | 6;
