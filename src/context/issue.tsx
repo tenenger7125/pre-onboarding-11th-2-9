@@ -69,7 +69,7 @@ export const IssueContextProvider = ({ children }: IssueContextProps) => {
         dispatch({ ...state, type: ISSUE_ACTION_TYPE.SUCCESS, issue: { ...issue, markup } });
       } catch (err) {
         if (isAxiosError<Issue>(err) || err instanceof Error) {
-          dispatch({ ...state, type: ISSUE_ACTION_TYPE.SUCCESS, error: err.message });
+          dispatch({ ...state, type: ISSUE_ACTION_TYPE.ERROR, error: err.message });
         }
       } finally {
         dispatch({ ...state, type: ISSUE_ACTION_TYPE.END });
