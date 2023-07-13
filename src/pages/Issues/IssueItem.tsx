@@ -2,7 +2,6 @@ import { styled } from 'styled-components';
 
 import { Issue } from '@/types';
 import { Link } from 'react-router-dom';
-import { PATH } from '@/constants/path';
 import { Title } from '@/components';
 
 type IssueItemProps = {
@@ -12,7 +11,7 @@ type IssueItemProps = {
 const IssueItem = ({ issue: { number, title, created_at, user, comments } }: IssueItemProps) => {
   return (
     <SIssueItem>
-      <SLink to={`${PATH.ISSUES}/${number}`}>
+      <SLink to={`./${number}`}>
         <SInfoContainer>
           <span>#{number}</span>
           <Title order={4} display="inline" p="0 10px">

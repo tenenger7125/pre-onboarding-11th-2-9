@@ -30,21 +30,16 @@ const instance = axios.create({
 });
 // GET /repos/{owner}/{repo}/issues/{issue_number}
 export const githubServices = {
-  async getIssues(page: number = 1) {
-    console.log('get: page', page);
+  async getIssues(org: string, repo: string, page: number) {
     // 이슈 목록 가져오기 API 활용
     // open 상태의 이슈 중 코멘트가 많은 순으로 정렬
-    const { data } = await instance.get<Issue[]>(
-      `/repos/angular/angular-cli/issues?state=open&sort=comments&page=${page}`,
-    );
+    const { data } = await instance.get<Issue[]>(`/repos/${org}/${repo}/issues?state=open&sort=comments&page=${page}`);
     return data;
   },
-  async getIssue(issue_number: number) {
+  async getIssue(org: string, repo: string, issue_number: number) {
     // 이슈 목록 가져오기 API 활용
     // open 상태의 이슈 중 코멘트가 많은 순으로 정렬
-    const { data } = await instance.get<Issue>(
-      `/repos/angular/angular-cli/issues/${issue_number}?state=open&sort=comments`,
-    );
+    const { data } = await instance.get<Issue>(`/repos/${org}/${repo}/issues/${issue_number}?state=open&sort=comments`);
     return data;
   },
 };

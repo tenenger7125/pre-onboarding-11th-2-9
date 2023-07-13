@@ -3,7 +3,7 @@ import { githubServices } from '@/services';
 import { Issue } from '@/types';
 import { isAxiosError } from 'axios';
 
-export const useIssues = () => {
+export const useIssues = (org: string, repo: string) => {
   const [issues, setIssues] = useState<Issue[]>([]);
   const [page, setPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -16,13 +16,15 @@ export const useIssues = () => {
       setIsLoading(true);
 
       try {
-        const newIssues = await githubServices.getIssues(page); // ❗ 즉시실행 함수를 사용하면 코드가 복잡해보여서 싫은데...
+        const newIssues = await githubServices.getIssues(org, repo, page);
 
         setIssues(prev => [...prev, ...newIssues]);
-        setIsLoading(false);
       } catch (err) {
-        if (isAxiosError<Issue>(err)) return setError(err.message);
-        throw new Error('axios에서 걸러내지 못한 에러입니다.', err as Error); // ❗ 그렇다면 어떻게 처리해야하지...?
+        if (isAxiosError<Issue>(err) || err instanceof Error) {
+          return setError(err.message);
+        }
+      } finally {
+        setIsLoading(false);
       }
     })();
   }, [page]);

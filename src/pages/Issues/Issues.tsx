@@ -6,12 +6,19 @@ import AdImage from './AdImage';
 
 import { Loading } from '@/components';
 import { useIssues, useScrollObserver } from '@/hooks';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { PATH } from '@/constants';
+
+const getOrgAndRepo = (pathname: string) => {
+  const [org, repo] = pathname.split('/').filter((_, i) => i === 1 || i === 2);
+  return { org, repo };
+};
 
 const Issues = () => {
   const navigate = useNavigate();
-  const { issues, isLoading, nextPage, error } = useIssues();
+  const { pathname } = useLocation();
+  const { org, repo } = getOrgAndRepo(pathname);
+  const { issues, isLoading, nextPage, error } = useIssues(org, repo);
   const ref = useScrollObserver(nextPage);
 
   if (error) navigate(PATH.ERROR);

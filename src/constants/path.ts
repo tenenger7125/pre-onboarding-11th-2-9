@@ -1,6 +1,7 @@
 export const PATH = {
   ROOT: '/',
   HOME: '/',
-  ISSUES: '/issues',
+  ISSUES: '/:org/:repo/issues',
+  // ISSUES: '/issues',
   ERROR: '/error',
 };

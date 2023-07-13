@@ -5,12 +5,17 @@ import { Title, Loading } from '@/components';
 import { PATH } from '../constants';
 
 const getIssueNumber = (pathname: string) => +(pathname.split('/').at(-1) ?? -1);
+const getOrgAndRepo = (pathname: string) => {
+  const [org, repo] = pathname.split('/').filter((_, i) => i === 1 || i === 2);
+  return { org, repo };
+};
 
 const IssueDetail = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const { org, repo } = getOrgAndRepo(pathname);
   const issue_number = getIssueNumber(pathname);
-  const { issue, isLoading, error } = useIssue(issue_number);
+  const { issue, isLoading, error } = useIssue(org, repo, issue_number);
 
   if (error) navigate(PATH.ERROR);
 
