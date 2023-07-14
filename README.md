@@ -29,73 +29,88 @@ $ npm start
 - **React**
 - **Context-API**
 - **TypeScript**
-- **react-router-dom**
+- **styled-components**
 - **axios**
+- **react-router-dom**
 - **remark**
 - **remark-html**
-- **styled-components**
-- **@craco**
 
 ## 구현 중점 사항
 
-## 과제
+### 과제
 
-### Next.js로 마크다운 블로그 만들기
+#### 특정 깃헙 레파지토리의 이슈 목록과 상세 내용을 확인하는 웹 사이트 구축
 
 - [DEMO](https://wanted-challenge-7-blog.vercel.app/)
 
 ### 폴더 구조
 
 ```
-📦blog
+📦pre-onboarding-11th-2-9
  ┣ 📂public
- ┃ ┣ 📜favicon.ico
- ┃ ┣ 📜next.svg
- ┃ ┗ 📜vercel.svg
+ ┃ ┣ 📂images
+ ┃ ┃ ┣ 📜ballTriangle.svg
+ ┃ ┃ ┗ 📜notFound.jpg
+ ┃ ┣ 📜index.html
+ ┃ ┣ 📜robots.txt
+ ┃ ┗ 📜_redirects
  ┣ 📂src
  ┃ ┣ 📂components
  ┃ ┃ ┣ 📂Layout
  ┃ ┃ ┃ ┣ 📜Footer.tsx
  ┃ ┃ ┃ ┣ 📜Header.tsx
  ┃ ┃ ┃ ┗ 📜index.tsx
- ┃ ┃ ┣ 📜Badge.tsx
  ┃ ┃ ┣ 📜index.ts
- ┃ ┃ ┣ 📜Meta.tsx
- ┃ ┃ ┣ 📜Text.tsx
+ ┃ ┃ ┣ 📜Loading.tsx
  ┃ ┃ ┗ 📜Title.tsx
  ┃ ┣ 📂constants
+ ┃ ┃ ┣ 📜index.ts
  ┃ ┃ ┗ 📜path.ts
+ ┃ ┣ 📂context
+ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┣ 📜issue.tsx
+ ┃ ┃ ┗ 📜issues.tsx
+ ┃ ┣ 📂hooks
+ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┗ 📜useScrollObserver.tsx
  ┃ ┣ 📂pages
- ┃ ┃ ┣ 📂api
- ┃ ┃ ┃ ┗ 📜hello.ts
- ┃ ┃ ┣ 📂posts
- ┃ ┃ ┃ ┗ 📜[postId].tsx
+ ┃ ┃ ┣ 📂Issues
+ ┃ ┃ ┃ ┣ 📜AdImage.tsx
+ ┃ ┃ ┃ ┣ 📜IssueItem.tsx
+ ┃ ┃ ┃ ┗ 📜Issues.tsx
+ ┃ ┃ ┣ 📜Error.tsx
+ ┃ ┃ ┣ 📜Home.tsx
  ┃ ┃ ┣ 📜index.tsx
- ┃ ┃ ┣ 📜_app.tsx
- ┃ ┃ ┗ 📜_document.tsx
+ ┃ ┃ ┣ 📜IssueDetail.tsx
+ ┃ ┃ ┗ 📜Root.tsx
+ ┃ ┣ 📂routes
+ ┃ ┃ ┗ 📜index.tsx
+ ┃ ┣ 📂services
+ ┃ ┃ ┣ 📜github.ts
+ ┃ ┃ ┗ 📜index.ts
  ┃ ┣ 📂styles
- ┃ ┃ ┣ 📜common.ts
  ┃ ┃ ┣ 📜Global.style.ts
  ┃ ┃ ┣ 📜index.ts
  ┃ ┃ ┗ 📜theme.ts
  ┃ ┣ 📂types
+ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┣ 📜issues.ts
  ┃ ┃ ┗ 📜styled.d.ts
- ┃ ┗ 📂utils
- ┃ ┃ ┣ 📜files.ts
+ ┃ ┣ 📂utils
  ┃ ┃ ┣ 📜index.ts
  ┃ ┃ ┗ 📜markdown.ts
- ┣ 📂__posts
- ┃ ┣ 📜post.md
- ┃ ┣ 📜post2.md
- ┃ ┣ 📜post3.md
- ┃ ┗ 📜post4.md
+ ┃ ┣ 📜App.tsx
+ ┃ ┗ 📜index.tsx
+ ┣ 📜.env
  ┣ 📜.eslintrc.json
  ┣ 📜.gitignore
- ┣ 📜next-env.d.ts
- ┣ 📜next.config.js
+ ┣ 📜.prettierrc
+ ┣ 📜package-lock.json
  ┣ 📜package.json
  ┣ 📜README.md
+ ┣ 📜README.old.md
  ┣ 📜tsconfig.json
+ ┣ 📜tsconfig.paths.json
  ┗ 📜yarn.lock
 ```
 
@@ -105,14 +120,74 @@ $ npm start
 
 ### 1. 요구사항
 
-#### Next.js로 마크다운으로 작성한 블로그를 정적 페이지(SSG)로 작성해주세요.
+#### 이슈 목록 화면
+
+- 이슈 목록 가져오기 API 활용
+- open 상태의 이슈 중 코멘트가 많은 순으로 정렬
+- 각 행에는 ‘이슈번호, 이슈제목, 작성자, 작성일, 코멘트수’를 표시
+- 다섯번째 셀마다 광고 이미지 출력
+
+  - 이미지
+    <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100"/>
+
+  - 광고 이미지 클릭 시 https://www.wanted.co.kr/ 로 이동
+
+- 화면을 아래로 스크롤 할 시 이슈 목록 추가 로딩(인피니티 스크롤)
 
 #### 접근 방법
 
-- 정적 페이지로 구현하기 위해서는 getStaticPaths와 getStaticProps를 사용하면 정적 페이지를 만들 수 있다.
-- 정적 페이지를 만들면, 사용자의 요청시 html를 보내주기 때문에 대기 시간을 줄이기 떄문에 사용자 경험을 향상시킬 수 있다.
-- 또한, 서버에서 만들어진 html을 전송하기 때문에 서버 부하도 줄어든다.
-- 다만, 자주 바뀌는 페이지의 경우에는 미리 만드는 의미가 없기 때문에 효과가 없다.
+- 깃허브에서 제공하는 REST API를 활용하여 레파지토리 이슈 목록을 가져왔다.
+  - `/repos/${org}/${repo}/issues`
+  - `/repos/${org}/${repo}/issue/${issueNumber}`
+- API에 쿼리스트링을 작성하여 open 상태의 이슈 filter, 코멘트가 많은 순으로 정렬했다.
+  - `/repos/${org}/${repo}/issues?state=open&sort=comments`
+- UI에는 `이슈번호, 이슈제목, 작성자, 작성일, 코멘트수`를 이슈 목록을 표시했다.
+- 이슈 목록 데이터를 map 메서드로 화면 UI를 구성할 때, idx를 활용하여 5번째 마다 `AdImage`를 추가 출력했다.
+  ```tsx
+  {
+    issues.map((issue, idx) => (
+      <Fragment key={issue.id}>
+        {idx % 4 === 0 && idx !== 0 && <AdImage />}
+        <IssueItem issue={issue} />
+      </Fragment>
+    ));
+  }
+  ```
+- 인피티니 스크롤을 구현하기 위해 intersection Observer API를 사용했다.
+
+  - 재사용을 위해, 커스텀 훅으로 구현했다.
+
+    ```tsx
+    import { useEffect, useRef } from 'react';
+
+    export const useScrollObserver = (callback: () => void) => {
+      const observerRef = useRef(null);
+
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) callback();
+          });
+        },
+        { threshold: 0.7 },
+      );
+
+      useEffect(() => {
+        if (observerRef.current) observer.observe(observerRef.current);
+
+        return () => observer.disconnect();
+      }, [observerRef.current]);
+
+      return observerRef;
+    };
+    ```
+
+  - 첫 화면 렌더링 시, 2번 fetch되는 이슈가 있어서, fetch 중이라면 observer가 참조하는 element가 화면에 표시하지 않게하여 중복 fetch되는 것을 막았다.
+    ```tsx
+    {
+      isLoading ? <Loading /> : <SScrollObserver ref={ref} src="/images/ballTriangle.svg" alt="ballTriangle" />;
+    }
+    ```
 
 ---
 
@@ -120,33 +195,14 @@ $ npm start
 
 ### 2. 요구사항
 
-#### 사용자는 루트 경로의 \_\_posts 폴더에 작성된 마크다운 파일(.md)를 작성할 수 있어야 합니다. 해당 파일은 마크다운 본문과 게시물에 대한 meta data를 담을 수 있어야 합니다. 아래는 마크다운에 jekyll에서 만든 frontmatter라는 문법(링크)을 적용한 예시입니다.
+#### 이슈 상세 화면
 
-```
----
-categories:
-  - Development
-  - VIM
-date: "2012-04-06"
-description: 설명을 적는 곳입니다
-slug: spf13-vim-3-0-release-and-new-website
-tags:
-  - .vimrc
-  - plugins
-  - spf13-vim
-  - vim
-title: hello
----
-
-## 예시입니다
-- 예시입니다
-```
+> - 이슈의 상세 내용 표시
+> - 이슈번호, 이슈제목, 작성자, 작성일, 코멘트 수, 작성자 프로필 이미지, 본문 표시
 
 #### 접근 방법
 
-- 사용자는 \_\_posts에 마크 다운 파일을 생성하여 마크 다운 파일에 metaDat와 markdown 문법을 작성할 수 있다.
-- 작성된 metaData와 markdown 문법을 화면에 표시하기 위한 방법을 생각해야한다.
-- 우선 frontmatter라는 문법을 확인하여, `map` 메서드를 사용하고 type을 고려하여 프로퍼티 키를 중점적으로 확인했다.
+- UI에는 `이슈번호, 이슈제목, 작성자, 작성일, 코멘트 수, 작성자 프로필 이미지, 본문`를 이슈 목록을 표시했다.
 
 ---
 
@@ -154,51 +210,147 @@ title: hello
 
 ### 3. 요구사항
 
-#### - 블로그에 작성된 게시물을 렌더링하는 `목록 페이지`와 개별 게시물을 렌더링하는 `상세 페이지`로 나누어 작성해주세요.
+#### 공통 헤더
 
-> - `/` - 목록 페이지
-> - `/[id]` - 상세 페이지
-> - 마크다운을 JavaScript로 변환해주는 도구는 `remark`(마크다운 Parser), `remark-html`(remark로 파싱한 데이터를 html로 변환) 을 참고
-> - 각 마크다운의 meta data는 `gray-matter`, `frontmatter` 참고
-> - 마크다운을 React에 삽입할 때는 `dangerouslySetInnerHTML` 을 사용 ([참고 링크](https://ko.reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml))
-> - (추가 구현) 코드 하이라이터는 `highlight.js`, `prism.js` 를 참고
+> - 두 페이지는 공통 헤더를 공유합니다.
+> - 헤더에는 Organization Name / Repository Name이 표시됩니다.
 
 #### 접근 방법
 
-- 페이지의 경우 상수로 경로를 작성했다.
-  - 📂constants > 📜path.ts
-- Next.js 에서는 app router와 page router를 지원하는데, 안정성 이슈로 Next.js 12버전을 사용하는 기업이 있다는 것을 고려하여, page router로 페이지를 구현했다.
-- 마크다운 파일을 parse하기 전에, 파일을 찾아 읽는 선행 작업이 우선되어야한다.
-  - `path`, `fs` 내장 함수로 마크다운 파일의 폴더 경로를 찾아서, 파일들을 모두 읽는다.
-  - 파일을 읽고 난 이후 remark 함수로 javascript 객체로 변환한다.
-  - 변환된 javascript 객체에서 meta 데이터와 markdown 문법을 얻을 수 있다.
-    - meta 데이터는 gray-matter 라이브러리를 사용한다.
-    - 문자열로 된 markdown 문법은 remark-html 라이브러리를 사용한다.
-  - meta 데이터를 gray-matter 라이브러리로 변환하면 javascript 객체로 변환된다.
-  - 문자열인 markdown 문법은 remark-html 라이브러리를 사용하여 변환하면, html 마크업 언어로 변환된다.
-  - html는 react의 문법중 하나인 dangerouslySetInnerHTML을 사용하여 삽입한다.
-- 코드 하이라이터는 highlight.js, prism.js는 아직 구현하면 업데이트 해야겠다.
-  - 정적 페이지에 스타일을 주려면 \_app.tsx파일 내부에 정의를 해야한다.
-  - highlight.js와 useEffect를 사용하여 전체 코드 중 `<code>`를 찾아 자동으로 하이라이트 스타일을 주도록 했다.
-    - 더 나은 방법이 있을거 같은데.... 더 연구를 해봐야겠다.
-    - 서버에서 정적 페이지를 한번만 만들기 때문에, 렌더링 이후에 동작하는 useEffect가 실행되지 않는다...
-    - 그래서 \_app.tsx 파일인 정적 페이지에서 실행하지 않고, CSR이 동작하는 페이지에 넣어줬다.
-      - 깜빡거리긴하지만..... 일단 동작은 한다.
+- routes 구성시, 이슈 목록들을 화면에 표시하는 route는 `/:owner/:repo/issues`로 구성을 했고, 특정 이슈를 화면에 표시하는 route는 `/:owner/:repo/issues/:issueNumber`로 구성했다.
+  - useParams를 활용하여 owner와 repo를 가져와 header에 출력했다.
+  - 만약 owner 또는 repo 중 하나라도 undefined라면 `GitHub` 텍스트를 화면에 출력했다.
 
 ---
 
-1. 이슈 목록 화면
-   - 이슈 목록 가져오기 API 활용
-   - open 상태의 이슈 중 코멘트가 많은 순으로 정렬
-   - 각 행에는 ‘이슈번호, 이슈제목, 작성자, 작성일, 코멘트수’를 표시
-   - 다섯번째 셀마다 광고 이미지 출력
-     - 이미지
-       <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100"/>
-       https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100
-     - 광고 이미지 클릭 시 https://www.wanted.co.kr/ 로 이동
-   - 화면을 아래로 스크롤 할 시 이슈 목록 추가 로딩(인피니티 스크롤)
+<br/>
 
-GitHub REST API
+### 4. 요구사항
+
+#### 필수 및 선택 요구 사항
+
+> - 필수 사항
+>   - 이슈 목록 및 상세 화면 기능 구현
+>   - Context API를 활용한 API 연동
+>   - 데이터 요청 중 로딩 표시
+>   - 에러 화면 구현
+>   - 지정된 조건(open 상태, 코멘트 많은 순)에 맞게 데이터 요청 및 표시
+> - 선택 사항
+>   - CSS-in-JS 적용
+
+#### 접근 방법
+
+- route는 아래와 같이 구성하여 화면 기능을 구현했다.
+  - context API를 제공하기 위한 `<IssuesContextProvider>, <IssueContextProvider>` Provider를 context를 사용하는 route에 추가로 작성했다.
+  ```tsx
+  export const routes = [
+    {
+      element: <Root />,
+      path: PATH.ROOT,
+      children: [
+        {
+          element: <Home />,
+          path: PATH.HOME,
+        },
+        {
+          element: (
+            <IssuesContextProvider>
+              <Issues />
+            </IssuesContextProvider>
+          ),
+          path: PATH.ISSUES,
+        },
+        {
+          element: (
+            <IssueContextProvider>
+              <IssueDetail />
+            </IssueContextProvider>
+          ),
+          path: `${PATH.ISSUES}/:issueNumber`,
+        },
+        {
+          element: <Error />,
+          path: PATH.ERROR,
+        },
+      ],
+    },
+  ];
+  ```
+- Context API의 경우, 자체적인 API request를 통해 data fetch 이후, data를 사용하는 컴포넌트에 보내, props drilling과 추상화를 통한 가독성 향상을 위주로 작성했다.
+  - 또한, data fetch에 필요한 쿼리스트링의 경우 context api를 호출하는 file 내부에 useParams를 활용해 parameters에 대한 사용자의 부담을 줄였다.
+  - 또한, useContext와 IssueContext를 import하여 데이터를 얻지 않고, useIssue라는 커스텀 훅을 만들어 export 함으로써, 사용자가 useIssue와 Provider만 적절히 사용하면 데이터를 얻을 수 있도록 편의성을 위주로 구현했다.
+  - 로딩과 에러 UI를 구현하기 위한 상태도 추가했다.
+- 로딩화면의 경우, data fetch 마다 변경되는 `isLoading` 상태로 conditional rendering을 통해 로딩을 하도록 구현했다.
+  - `Issues Page`, `IssueDetail Page`
+- 에러화면의 경우, API 요청 실패, 잘못된 route 요청을 할 경우에 에러 UI를 표시했다.
+  - route의 경우 `*` route를 통해 잘못된 route 요청은 에러 페이지를 render했다.
+  - API 요청 실패시에는 if 조건문을 통해 error가 있는지 확인하여 에러 페이지를 render했다.
+- API에 쿼리스트링을 작성하여 open 상태의 이슈 filter, 코멘트가 많은 순으로 정렬했다.
+  - `/repos/${org}/${repo}/issues?state=open&sort=comments`
+- 상태 변경에 따른 쉽게 스타일을 변경할 수 있도록 `styled-components`를 사용했다.
+
+---
+
+<br/>
+
+### 5. 개발 조건 및 환경
+
+#### - GitHub REST API 사용
+
+> - 언어 : JavaScript / TypeScript
+> - 필수 기술: React, Context API
+> - 선택 기술:
+>   - Redux와 같은 전역 상태 관리 기술(toolkit 사용 가능, RTK-Query는 사용제한)
+>   - 스타일 관련 라이브러리(styled-components, emotion, ui kit 등)
+>   - 라우팅 관련 라이브러리(react-router-dom)
+>   - HTTP Client(axios 등)
+>   - 마크다운 렌더링 라이브러리
+> - 위에 기재된 라이브러리 외 사용 불가
+
+#### 접근 방법
+
+- 정적 타입 언어인 typescript를 사용하여, 컴파일 단계에서 오류를 검출하여 오류를 수정하고자 했다.
+- Context API로 useIssue, useIssues 를 구현하여 추상화를 통한 사용자의 가독성을 향상시켰다.
+- 상태 변경에 따른 쉽게 스타일을 변경할 수 있도록 `styled-components`를 사용했다.
+- 페이지 이동시 페이지를 다시 로드하지 않고, URL을 기반으로 UI를 업데이트 할 수 있도록 SPA를 쉽게 구현하는데 사용했다.
+- 마크 다운 라이브러리인 remark와 remark-html를 활용하여 markdown 문법을 htmlString으로 변환하고, 리액트에서 제공하는 dangerouslySetInnerHTML 속성을 활용하여 html을 삽입하여 render했다.
+
+  ```ts
+  export const markdown = {
+    async parse(htmlString: string) {
+      const { value } = await remark()
+        .use(html as Plugin<[], Root, string>)
+        .process(htmlString);
+
+      return { __html: String(value) };
+    },
+  };
+  ```
+
+---
+
+<br/>
+
+### 6. 참고사항
+
+#### - GitHub REST API 사용
+
+> - API
+>   - [GitHub REST API](https://docs.github.com/en/rest)
+>   - token을 발급하지 않으면 시간 당 60회로 API 호출 횟수 제한 됨
+>   - 개발 시에는 access token을 발급받아 60회 제한 없이 개발 권장
+>   - 이후 과제 제출 및 배포단계에서는 access token이 노출되지 않도록 주의
+> - 와이어 프레임
+>   <img src="https://lean-mahogany-686.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F4dce1f3c-8939-4dbd-8568-e899d0ae91fc%2FUntitled.png?id=32732b3a-a57f-4631-9f54-664d6d4069df&table=block&spaceId=72b256b1-ae08-4e70-bb6c-f9c3cad5a793&width=1900&userId=&cache=v2" />
+
+#### 접근 방법
+
+- `Fine-grained personal access tokens`으로 access-token을 발급했다.
+  - `Personal access tokens (classic)`의 경우 모든 권한을 주기 때문에, gitHub에서 권장하는 `Fine-grained personal access tokens`를 사용하여 권한을 선택해서 부여하도록 했다.
+  - access-token이 외부에 유출되지 않도록 .env 파일로 관리했으며, github에 유출되지 않도록 .gitignore 파일에도 해당 파일을 추적하지 않도록 했다.
+  - 내가 배포한 사이트인 netlify의 경우 환경 변수를 지정할 수 있는 기능을 제공했기 때문에, 환경변수를 수동으로 직접 지정하여 배포 웹사이트에서 access-token을 접근할 수 있도록 했다.
+
+---
 
 ## Team Info
 
