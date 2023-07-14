@@ -2,8 +2,8 @@ import { createContext, useContext, useEffect, useReducer } from 'react';
 import { useParams } from 'react-router-dom';
 import { isAxiosError } from 'axios';
 
-import { githubServices } from '@/services';
-import type { Issue } from '@/types';
+import { githubServices } from '../services';
+import type { Issue } from '../types';
 
 const ISSUES_ACTION_TYPE = {
   NEXT_PAGE: 'nextPage',

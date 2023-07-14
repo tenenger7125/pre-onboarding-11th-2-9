@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Issue } from '@/types';
+import type { Issue } from '../types';
 
 const instance = axios.create({
   baseURL: 'https://api.github.com',

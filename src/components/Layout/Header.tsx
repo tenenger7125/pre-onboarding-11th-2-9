@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-import { Title } from '@/components';
+import { Title } from '../';
 
 const Header = () => {
   const { org, repo } = useParams();

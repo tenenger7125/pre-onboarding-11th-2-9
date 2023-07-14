@@ -4,10 +4,10 @@ import { styled } from 'styled-components';
 import IssueItem from './IssueItem';
 import AdImage from './AdImage';
 
-import { Error } from '@/pages';
-import { Loading } from '@/components';
-import { useIssues } from '@/context/issues';
-import { useScrollObserver } from '@/hooks';
+import { Error } from '../../pages';
+import { Loading } from '../../components';
+import { useIssues } from '../../context';
+import { useScrollObserver } from '../../hooks';
 
 const Issues = () => {
   const { issues, isLoading, nextPage, error } = useIssues();

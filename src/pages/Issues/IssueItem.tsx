@@ -1,8 +1,8 @@
 import { styled } from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { Title } from '@/components';
-import type { Issue } from '@/types';
+import { Title } from '../../components';
+import type { Issue } from '../../types';
 
 const IssueItem = ({ issue: { number, title, created_at, user, comments } }: IssueItemProps) => {
   return (

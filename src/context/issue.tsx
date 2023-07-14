@@ -2,9 +2,9 @@ import { createContext, useContext, useEffect, useReducer } from 'react';
 import { useParams } from 'react-router-dom';
 import { isAxiosError } from 'axios';
 
-import { githubServices } from '@/services';
-import { markdown } from '@/utils/markdown';
-import type { Issue, MarkupIssue } from '@/types';
+import { githubServices } from '../services';
+import { markdown } from '../utils';
+import type { Issue, MarkupIssue } from '../types';
 
 const ISSUE_ACTION_TYPE = {
   LOADING: 'loading',

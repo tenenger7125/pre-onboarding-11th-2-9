@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-import { Title } from '@/components';
+import { Title } from '../components';
 
 const Error = () => {
   const navigate = useNavigate();

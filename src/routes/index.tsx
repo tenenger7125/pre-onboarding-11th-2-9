@@ -1,7 +1,6 @@
-import { Root, Home, Issues, IssueDetail, Error } from '@/pages';
-import { IssuesContextProvider } from '@/context/issues';
-import { IssueContextProvider } from '@/context/issue';
-import { PATH } from '@/constants';
+import { Root, Home, Issues, IssueDetail, Error } from '../pages';
+import { IssuesContextProvider, IssueContextProvider } from '../context';
+import { PATH } from '../constants';
 
 export const routes = [
   {

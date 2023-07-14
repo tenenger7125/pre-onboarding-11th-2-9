@@ -1,8 +1,8 @@
 import { styled } from 'styled-components';
 
-import { Error } from '@/pages';
-import { Title, Loading } from '@/components';
-import { useIssue } from '@/context/issue';
+import { Error } from '../pages';
+import { Title, Loading } from '../components';
+import { useIssue } from '../context/issue';
 
 const IssueDetail = () => {
   const { issue, isLoading, error } = useIssue();

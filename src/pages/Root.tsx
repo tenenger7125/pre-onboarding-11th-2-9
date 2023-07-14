@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-import { Layout } from '@/components';
+import { Layout } from '../components';
 
 const Root = () => {
   return (
