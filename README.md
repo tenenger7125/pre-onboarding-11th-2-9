@@ -41,8 +41,6 @@ $ npm start
 
 #### 특정 깃헙 레파지토리의 이슈 목록과 상세 내용을 확인하는 웹 사이트 구축
 
-- [DEMO](https://wanted-challenge-7-blog.vercel.app/)
-
 ### 폴더 구조
 
 ```
@@ -143,6 +141,7 @@ $ npm start
   - `/repos/${org}/${repo}/issues?state=open&sort=comments`
 - UI에는 `이슈번호, 이슈제목, 작성자, 작성일, 코멘트수`를 이슈 목록을 표시했다.
 - 이슈 목록 데이터를 map 메서드로 화면 UI를 구성할 때, idx를 활용하여 5번째 마다 `AdImage`를 추가 출력했다.
+  - 이미지를 클릭할 경우 해당 페이지로 이동하도록 Anchor tag를 사용했다.
   ```tsx
   {
     issues.map((issue, idx) => (
