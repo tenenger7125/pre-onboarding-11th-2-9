@@ -116,22 +116,6 @@ $ npm start
 
 ---
 
-### 1. 요구사항
-
-#### 이슈 목록 화면
-
-- 이슈 목록 가져오기 API 활용
-- open 상태의 이슈 중 코멘트가 많은 순으로 정렬
-- 각 행에는 ‘이슈번호, 이슈제목, 작성자, 작성일, 코멘트수’를 표시
-- 다섯번째 셀마다 광고 이미지 출력
-
-  - 이미지
-    <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100"/>
-
-  - 광고 이미지 클릭 시 https://www.wanted.co.kr/ 로 이동
-
-- 화면을 아래로 스크롤 할 시 이슈 목록 추가 로딩(인피니티 스크롤)
-
 #### 접근 방법
 
 - 깃허브에서 제공하는 REST API를 활용하여 레파지토리 이슈 목록을 가져왔다.
@@ -192,13 +176,6 @@ $ npm start
 
 <br/>
 
-### 2. 요구사항
-
-#### 이슈 상세 화면
-
-> - 이슈의 상세 내용 표시
-> - 이슈번호, 이슈제목, 작성자, 작성일, 코멘트 수, 작성자 프로필 이미지, 본문 표시
-
 #### 접근 방법
 
 - UI에는 `이슈번호, 이슈제목, 작성자, 작성일, 코멘트 수, 작성자 프로필 이미지, 본문`를 이슈 목록을 표시했다.
@@ -206,13 +183,6 @@ $ npm start
 ---
 
 <br/>
-
-### 3. 요구사항
-
-#### 공통 헤더
-
-> - 두 페이지는 공통 헤더를 공유합니다.
-> - 헤더에는 Organization Name / Repository Name이 표시됩니다.
 
 #### 접근 방법
 
@@ -223,19 +193,6 @@ $ npm start
 ---
 
 <br/>
-
-### 4. 요구사항
-
-#### 필수 및 선택 요구 사항
-
-> - 필수 사항
->   - 이슈 목록 및 상세 화면 기능 구현
->   - Context API를 활용한 API 연동
->   - 데이터 요청 중 로딩 표시
->   - 에러 화면 구현
->   - 지정된 조건(open 상태, 코멘트 많은 순)에 맞게 데이터 요청 및 표시
-> - 선택 사항
->   - CSS-in-JS 적용
 
 #### 접근 방법
 
@@ -292,20 +249,6 @@ $ npm start
 
 <br/>
 
-### 5. 개발 조건 및 환경
-
-#### - GitHub REST API 사용
-
-> - 언어 : JavaScript / TypeScript
-> - 필수 기술: React, Context API
-> - 선택 기술:
->   - Redux와 같은 전역 상태 관리 기술(toolkit 사용 가능, RTK-Query는 사용제한)
->   - 스타일 관련 라이브러리(styled-components, emotion, ui kit 등)
->   - 라우팅 관련 라이브러리(react-router-dom)
->   - HTTP Client(axios 등)
->   - 마크다운 렌더링 라이브러리
-> - 위에 기재된 라이브러리 외 사용 불가
-
 #### 접근 방법
 
 - 정적 타입 언어인 typescript를 사용하여, 컴파일 단계에서 오류를 검출하여 오류를 수정하고자 했다.
@@ -329,18 +272,6 @@ $ npm start
 ---
 
 <br/>
-
-### 6. 참고사항
-
-#### - GitHub REST API 사용
-
-> - API
->   - [GitHub REST API](https://docs.github.com/en/rest)
->   - token을 발급하지 않으면 시간 당 60회로 API 호출 횟수 제한 됨
->   - 개발 시에는 access token을 발급받아 60회 제한 없이 개발 권장
->   - 이후 과제 제출 및 배포단계에서는 access token이 노출되지 않도록 주의
-> - 와이어 프레임
->   <img src="https://lean-mahogany-686.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F4dce1f3c-8939-4dbd-8568-e899d0ae91fc%2FUntitled.png?id=32732b3a-a57f-4631-9f54-664d6d4069df&table=block&spaceId=72b256b1-ae08-4e70-bb6c-f9c3cad5a793&width=1900&userId=&cache=v2" />
 
 #### 접근 방법
 
